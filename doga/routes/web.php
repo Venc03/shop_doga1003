@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BasketController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/api/basket', [BasketController::class,'index']);
+Route::get('/api/basket/{id}', [BasketController::class,'show']);
+Route::post('/api/basket', [BasketController::class,'store']);
+Route::put('/api/basket/{id}', [BasketController::class,'update']);
+Route::delete('/api/basket/{id}', [BasketController::class,'index']);
+
+
+/* View */
+
+Route::get('/baskets/new', [BasketController::class,'newView']);
+
+Route::get('/baskets/edit/{id}', [BasketController::class,'editView']);
+
+Route::get('/baskets/list', [BasketController::class,'listView']);
